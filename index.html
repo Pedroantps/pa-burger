@@ -17,15 +17,15 @@
             </div>
                 <nav>
                     <ul class="leftside">
-                        <li><a href="">Início</a></li>
-                        <li><a href="">Burgers</a></li>
-                        <li><a href="">Contato</a></li>
+                        <li><a href="#hero">Início</a></li>
+                        <li><a href="#produtos">Burgers</a></li>
+                        <li><a href="#footer">Contato</a></li>
                     </ul>
                     <div class="rightside">
-                        <a href="" class="button">Fazer pedido</a>
+                        <a href="javascript:void(0)" onclick="abrirCarrinho()" class="button">Fazer pedido</a>
                     </div>
-                </nav>
-                <div class="menu">
+                </nav>  
+                <div class="menu" onclick="toggleMenu()">
                     <div class="menu-icon">
                         <div></div>
                         <div></div>
@@ -35,12 +35,12 @@
             </div>
         </div>
     </header>
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="container">
             <div class="content">
                 <h1>O melhor burger da cidade!</h1>
                 <p>Experimente o sabor único dos nossos burgers artesanais, feitos com ingredientes frescos e de alta qualidade. Venha saborear o melhor burger da cidade!</p>
-                <a href="" class="button">Peça agora</a>
+                <a href="#produtos" class="button">Peça agora</a>
             </div>
             <div class="image">
                 <img src="./assets/heroBurger.png" alt="Imagem de um burger suculento">
@@ -67,75 +67,63 @@
     </section>
     <main>
         <div class="container">
-            <div class="products-grid">
-                <a href="" class="product-item">
-                    <div class="warning">Promoção</div>
-                    <div class="photo">
-                        <img src="./assets/burgers/burger1.png" alt="">
-                    </div>
-                    <div class="info">
-                        <div class="product-category">Tradicional</div>
-                        <div class="product-name">Burger do PA</div>
-                        <div class="product-price">R$ 19,90</div>
-                    </div>
-                </a>
-                <a href="" class="product-item">
-                    <div class="photo">
-                        <img src="./assets/burgers/burger2.png" alt="">
-                    </div>
-                    <div class="info">
-                        <div class="product-category">Tradicional</div>
-                        <div class="product-name">Burger do PA</div>
-                        <div class="product-price">R$ 19,90</div>
-                    </div>
-                </a>
-                <a href="" class="product-item">
-                    <div class="photo">
-                        <img src="./assets/burgers/burger3.png" alt="">
-                    </div>
-                    <div class="info">
-                        <div class="product-category">Tradicional</div>
-                        <div class="product-name">Burger do PA</div>
-                        <div class="product-price">R$ 19,90</div>
-                    </div>
-                </a>
-                <a href="" class="product-item">
-                    <div class="photo">
-                        <img src="./assets/burgers/burger4.png" alt="">
-                    </div>
-                    <div class="info">
-                        <div class="product-category">Tradicional</div>
-                        <div class="product-name">Burger do PA</div>
-                        <div class="product-price">R$ 19,90</div>
-                    </div>
-                </a>
-                <a href="" class="product-item">
-                    <div class="photo">
-                        <img src="./assets/burgers/batata.png" alt="">
-                    </div>
-                    <div class="info">
-                        <div class="product-category">Acompanhamento</div>
-                        <div class="product-name">Batata Frita</div>
-                        <div class="product-price">R$ 9,90</div>
-                    </div>
-                </a>
-                <a href="" class="product-item">
-                    <div class="photo">
-                        <img src="./assets/burgers/cocazero.png" alt="">
-                    </div>
-                    <div class="info">
-                        <div class="product-category">Bebida</div>
-                        <div class="product-name">Coca-Cola Zero</div>
-                        <div class="product-price">R$ 6,90</div>
-                    </div>
-                </a>
+            <div class="products-grid" id="produtos">
+                <!-- Os produtos serão inseridos aqui dinamicamente via JavaScript -->
             </div>
         </div>
     </main>
+    
+    <div id="overlay" onclick="fecharTudo()"></div>
+    
+    <aside id="sidebar-carrinho" class="sidebar">
+        <button class="fechar-btn" onclick="fecharCarrinho()">X</button>
+        <h2>Seu Carrinho</h2>
+        
+        <div id="itens-carrinho"></div>
+        
+        <div class="carrinho-footer">
+            <div class="total">Total: <span id="valor-total">R$ 0,00</span></div>
+            <button class="finalizar-btn">Finalizar Compra</button>
+        </div>
+    </aside>
+
+    <div id="modal-overlay" class="modal-overlay" onclick="fecharModal()">
+        <div class="modal-body" onclick="event.stopPropagation()">
+            <div class="modal-left">
+                <img id="modal-img" src="" alt="Produto">
+            </div>
+            <div class="modal-right">
+                <h2 id="modal-nome">Nome do Produto</h2>
+                <p id="modal-desc">Descrição com detalhes dos ingredientes.</p>
+                
+                <div class="modal-price-area">
+                    <div class="modal-price">
+                        <span id="modal-preco">R$ 0,00</span>
+                    </div>
+                    <div class="modal-qt">
+                        <button onclick="mudarQt(-1)">-</button>
+                        <span id="modal-qt-num">1</span>
+                        <button onclick="mudarQt(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="add-to-cart-btn" onclick="adicionarAoCarrinho()">Adicionar ao carrinho</button>
+                    <button class="cancel-btn" onclick="fecharModal()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="cart-fab" onclick="abrirCarrinho()">
+        🛒 <span id="cart-contador">0</span>
+    </button>
+
+    <script src="./assets/script.js" defer></script>
 </body>
 
 <footer>
-    <div class="container">
+    <div class="container" id="footer">
         <div class="logo">
             <a href="">PA <span>•</span> BURGER </a>
         </div>
