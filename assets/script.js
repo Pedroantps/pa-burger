@@ -64,8 +64,10 @@ function fecharTudo() {
     document.getElementById('overlay').style.display = 'none';
 
     const menuContainer = document.querySelector('.menu');
-    menuContainer.style.display = ''; 
-    menuContainer.classList.remove('fixo'); 
+    if (menuContainer) {
+        menuContainer.style.display = ''; 
+        menuContainer.classList.remove('fixo');
+    }
 }
 
 function toggleMenu() {
@@ -121,11 +123,6 @@ function mostrarProdutos(lista) {
 // LÓGICA DA ABA LATERAL DO CARRINHO
 const overlay = document.getElementById('overlay');
 const sidebarCarrinho = document.getElementById('sidebar-carrinho');
-
-function fecharCarrinho() {
-    sidebarCarrinho.classList.remove('aberta');
-    overlay.style.display = 'none';
-}
 
 function abrirCarrinho() {
     fecharTudo();

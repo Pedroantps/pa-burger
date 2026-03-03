@@ -700,7 +700,7 @@ footer .copyright a:hover {
 
     header .menu {
         display: flex;
-        z-index: 110; /
+        z-index: 110; 
     }
 
     header .menu.fixo {
