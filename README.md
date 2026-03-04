@@ -1,30 +1,28 @@
 # 🍔 PA Burger
 
-Uma aplicação web moderna e interativa para uma hamburgueria artesanal. Este projeto Front-end foi construído inicialmente como uma landing page e evoluiu para uma aplicação dinâmica com carrinho de compras, focando na melhor experiência do utilizador (UX/UI).
+Uma aplicação web moderna e interativa para uma hamburgueria artesanal. Este projeto Front-end foi construído inicialmente como uma landing page e evoluiu para uma aplicação dinâmica completa, com gestão de estado de carrinho e persistência de dados, focando na melhor experiência do utilizador (UX/UI).
 
 ## ✨ Funcionalidades
 
-* **Catálogo Dinâmico:** Os produtos são renderizados dinamicamente no ecrã através de uma estrutura de dados em JavaScript, simulando o consumo de uma API.
-* **Carrinho de Compras Funcional:** Gaveta lateral (Sidebar) interativa que permite adicionar produtos, alterar quantidades, remover itens e calcular o valor total da conta em tempo real.
-* **Busca e Filtros em Tempo Real:** Barra de pesquisa inteligente que filtra os produtos pelo nome e pela categoria instantaneamente enquanto o utilizador digita.
-* **Modal de Produto:** Janela centralizada (Modal) que foca a atenção nos detalhes do hambúrguer e permite selecionar a quantidade desejada antes de adicionar ao carrinho.
-* **Design Responsivo e Menu Mobile:** A interface adapta-se a qualquer ecrã, com um Menu Hambúrguer lateral (Off-canvas) criado para dispositivos móveis.
+* **Catálogo Dinâmico:** Os produtos são renderizados dinamicamente no ecrã através de uma estrutura de dados em JavaScript.
+* **Carrinho de Compras Avançado:** Gaveta lateral (Sidebar) interativa que permite adicionar produtos, alterar quantidades, remover itens individuais e esvaziar todo o carrinho. O cálculo do valor total da conta é feito em tempo real.
+* **Persistência de Dados (LocalStorage):** Os itens adicionados ao carrinho são guardados na memória do navegador. O utilizador não perde o seu pedido mesmo se fechar a aba ou atualizar a página.
+* **Checkout Inteligente (Integração WhatsApp):** O botão de finalizar compra formata automaticamente todo o pedido (itens, quantidades e valor total) e redireciona o utilizador para a API do WhatsApp, pronto para enviar a mensagem ao estabelecimento.
+* **Busca e Filtros em Tempo Real:** Barra de pesquisa inteligente que filtra os produtos pelo nome.
+* **Modal de Produto:** Janela centralizada que foca a atenção nos detalhes do hambúrguer e permite selecionar a quantidade antes de adicionar ao carrinho.
+* **Design Responsivo e Menu Mobile:** A interface adapta-se a qualquer ecrã, com um Menu Hambúrguer lateral criado para dispositivos móveis.
 
 ## 🛠️ Tecnologias Utilizadas
 
-O projeto foi desenvolvido sem o uso de bibliotecas externas, garantindo o domínio dos fundamentos da web:
+O projeto foi desenvolvido sem o uso de frameworks ou bibliotecas externas, garantindo o domínio dos fundamentos da web:
 
-* **HTML5:** Estruturação semântica avançada.
-* **CSS3:** Estilização utilizando Flexbox e CSS Grid para layouts complexos, variáveis e media queries para responsividade.
+* **HTML5:** Estruturação semântica.
+* **CSS3:** Estilização utilizando Flexbox, CSS Grid, variáveis e media queries para responsividade.
 * **JavaScript (Vanilla JS):**
-    * Manipulação profunda do DOM (Document Object Model).
-    * Event Listeners para interatividade e animações das gavetas (Sidebars) e Modais.
-    * Lógica de programação aplicada a Arrays e Objetos (métodos como `.filter()`, `.includes()`, `.reduce()`, `.forEach()` e `.find()`).
-
-## 🚧 Próximos Passos (Em Desenvolvimento)
-
-- [ ] Simulação de Checkout consumindo uma API (Mock) para validar pagamentos fictícios com cartão de crédito.
-- [ ] Implementação de `localStorage` para não perder os itens do carrinho ao atualizar a página.
+    * Manipulação do DOM.
+    * Consumo e gestão de `localStorage`.
+    * Integração com link building dinâmico (API WhatsApp).
+    * Lógica de programação aplicada a Arrays e Objetos (`.filter()`, `.includes()`, `.reduce()`, `.forEach()`, `.find()`, `.splice()`).
 
 ## 🚀 Como executar o projeto
 
