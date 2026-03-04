@@ -289,7 +289,6 @@ function esvaziarCarrinho() {
 
 function finalizarCompra() {
     if (carrinho.length === 0) {
-        alert('O seu carrinho está vazio!');
         return;
     }
     const numeroWhatsapp = '5524999838328';
