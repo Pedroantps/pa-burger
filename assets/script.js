@@ -56,7 +56,11 @@ const produtos = [
     }
 ];
 
-let carrinho = []; 
+let carrinho = JSON.parse(localStorage.getItem('meuCarrinho')) || [];
+
+function salvarMemoria() {
+    localStorage.setItem('meuCarrinho', JSON.stringify(carrinho));
+}
 
 function fecharTudo() {
     document.getElementById('sidebar-carrinho').classList.remove('aberta');
@@ -184,9 +188,8 @@ function adicionarAoCarrinho() {
     }
 
     atualizarContadorCarrinho();
-
     atualizarCarrinhoVisual();
-
+    salvarMemoria();
     fecharModal();
 }
 
@@ -232,11 +235,15 @@ function atualizarCarrinhoVisual() {
         let subtotal = precoNumero * item.quantidade;
         valorTotalConta += subtotal; 
 
+
         containerCarrinho.innerHTML += `
             <div class="cart-item">
                 <img src="${item.imagem}" alt="${item.nome}">
                 <div class="cart-item-info">
-                    <h4>${item.nome}</h4>
+                    <div class="cart-item-topo">
+                        <h4>${item.nome}</h4>
+                        <button class="remover-item-btn" onclick="removerItemCarrinho(${index})">X</button>
+                    </div>
                     <p>${item.preco}</p>
                     <div class="cart-item-qt">
                         <button onclick="alterarQuantidadeCarrinho(${index}, -1)">-</button>
@@ -249,6 +256,7 @@ function atualizarCarrinhoVisual() {
     });
 
     elementoTotal.innerHTML = `R$ ${valorTotalConta.toFixed(2).replace('.', ',')}`;
+
 }
 
 function alterarQuantidadeCarrinho(indexDoItem, valor) {
@@ -260,4 +268,46 @@ function alterarQuantidadeCarrinho(indexDoItem, valor) {
 
     atualizarContadorCarrinho();
     atualizarCarrinhoVisual();
+    salvarMemoria();
 }
+
+function removerItemCarrinho(indexDoItem) {
+    carrinho.splice(indexDoItem, 1); 
+    salvarMemoria();
+    atualizarContadorCarrinho();
+    atualizarCarrinhoVisual();
+}
+
+function esvaziarCarrinho() {
+    if (carrinho.length === 0) return; 
+
+        carrinho = []; 
+        salvarMemoria(); 
+        atualizarContadorCarrinho();
+        atualizarCarrinhoVisual();
+}
+
+function finalizarCompra() {
+    if (carrinho.length === 0) {
+        alert('O seu carrinho está vazio!');
+        return;
+    }
+    const numeroWhatsapp = '5524999838328';
+    let mensagem = 'Olá, gostaria de fazer um pedido:\n\n';
+
+    carrinho.forEach(item => {
+        mensagem += `- ${item.nome} x${item.quantidade}\n`;
+    });
+    
+    mensagem += '\nTotal: ' + document.getElementById('valor-total').innerText;
+    mensagem += '\nEndereço de entrega: [Insira seu endereço aqui]';
+    mensagem += '\nForma de pagamento: [Insira a forma de pagamento aqui]';
+
+    const urlWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagem)}`;
+    window.open(urlWhatsapp, '_blank');
+
+    esvaziarCarrinho();
+}
+
+atualizarContadorCarrinho();
+atualizarCarrinhoVisual();
